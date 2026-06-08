@@ -9,6 +9,7 @@ import Despachos from './pages/Despachos';
 import Administracion from './pages/Administracion';
 import Configuracion from './pages/Configuracion';
 import CarroIoT from './pages/CarroIoT';
+import Vehiculos from './pages/Vehiculos';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/almacen" element={<AlmacenVisual />} />
             <Route path="/cajas" element={<NuevaCaja />} />
             <Route path="/despachos" element={<Despachos />} />
+            <Route path="/vehiculos" element={<Vehiculos />} />
             <Route path="/administracion" element={<Administracion />} />
             <Route path="/configuracion" element={<Configuracion />} />
             <Route path="/carro" element={<CarroIoT />} />

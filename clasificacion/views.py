@@ -19,7 +19,7 @@ from .serializers import (
 )
 
 class VehiculoViewSet(viewsets.ModelViewSet):
-    queryset = Vehiculo.objects.all()
+    queryset = Vehiculo.objects.all().order_by('placa')
     serializer_class = VehiculoSerializer
 
 class DestinoViewSet(viewsets.ModelViewSet):

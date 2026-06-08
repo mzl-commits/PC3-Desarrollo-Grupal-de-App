@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { getUsuarios, getProveedores, getVehiculos, getDestinos } from '../api/endpoints';
 
 export default function Administracion() {
@@ -119,9 +120,9 @@ export default function Administracion() {
         <div className="bg-surface border border-surface2/60 rounded-2xl shadow-xl overflow-hidden flex flex-col max-h-[450px] fade-in fade-d2">
           <div className="px-6 py-4 border-b border-surface2/60 font-semibold text-white flex items-center justify-between bg-surface2/40 shrink-0">
             <span className="flex items-center gap-2"><i className="bi bi-truck text-sky-400"></i>Flota de Vehículos</span>
-            <button className="bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600 hover:text-white border border-emerald-600/30 hover:border-emerald-600 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1">
+            <Link to="/vehiculos" className="bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600 hover:text-white border border-emerald-600/30 hover:border-emerald-600 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1 no-underline">
               <i className="bi bi-plus-lg"></i> Nuevo
-            </button>
+            </Link>
           </div>
           <div className="overflow-x-auto overflow-y-auto flex-1 custom-scrollbar">
             <table className="w-full text-left border-collapse">
@@ -140,7 +141,7 @@ export default function Administracion() {
                     <td className="px-6 py-3 text-slate-300">{v.marca}</td>
                     <td className="px-6 py-3 text-slate-500">{v.capacidad_kg} kg</td>
                     <td className="px-6 py-3 text-right">
-                      <button className="text-slate-500 hover:text-red-400 p-2 rounded-lg hover:bg-red-400/10 transition-colors"><i className="bi bi-trash"></i></button>
+                      <Link to="/vehiculos" className="text-slate-500 hover:text-sky-400 p-2 rounded-lg hover:bg-sky-400/10 transition-colors inline-flex no-underline"><i className="bi bi-pencil-square"></i></Link>
                     </td>
                   </tr>
                 ))}

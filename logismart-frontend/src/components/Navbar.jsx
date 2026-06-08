@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Package, Search, Terminal, Plus } from 'lucide-react';
+import { Search, Terminal, Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { getCajas } from '../api/endpoints';
 
@@ -36,6 +36,9 @@ export default function Navbar() {
         </NavLink>
         <NavLink to="/despachos" className={({ isActive }) => `px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 no-underline transition-colors ${isActive ? 'text-[#AFB3B7] bg-[#2D4A53]/40' : 'text-[#69818D] hover:text-[#AFB3B7] hover:bg-[#2D4A53]/20'}`}>
           <i className="bi bi-truck"></i> Despachos
+        </NavLink>
+        <NavLink to="/vehiculos" className={({ isActive }) => `px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 no-underline transition-colors ${isActive ? 'text-[#AFB3B7] bg-[#2D4A53]/40' : 'text-[#69818D] hover:text-[#AFB3B7] hover:bg-[#2D4A53]/20'}`}>
+          <i className="bi bi-truck-front"></i> Vehiculos
         </NavLink>
         <NavLink to="/configuracion" className={({ isActive }) => `px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 no-underline transition-colors ${isActive ? 'text-[#AFB3B7] bg-[#2D4A53]/40' : 'text-[#69818D] hover:text-[#AFB3B7] hover:bg-[#2D4A53]/20'}`}>
           <i className="bi bi-robot"></i> Robot AGV

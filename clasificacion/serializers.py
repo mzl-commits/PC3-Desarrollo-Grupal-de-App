@@ -12,6 +12,20 @@ class VehiculoSerializer(serializers.ModelSerializer):
         model = Vehiculo
         fields = '__all__'
 
+    def validate_placa(self, value):
+        placa = value.strip().upper()
+        qs = Vehiculo.objects.filter(placa__iexact=placa)
+        if self.instance:
+            qs = qs.exclude(pk=self.instance.pk)
+        if qs.exists():
+            raise serializers.ValidationError('Ya existe un vehiculo con esta placa.')
+        return placa
+
+    def validate_capacidad_kg(self, value):
+        if value <= 0:
+            raise serializers.ValidationError('La capacidad debe ser mayor que cero.')
+        return value
+
 class DestinoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Destino

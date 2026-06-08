@@ -4,6 +4,7 @@ from django.contrib import admin
 from .models import (
     Caja, Ubicacion, Medida, Proveedor,
     Usuario, HistorialMovimientos, Despacho,
+    Vehiculo, Destino, Categoria, ConfigCarro, EstadoCarro,
 )
 
 
@@ -29,3 +30,14 @@ admin.site.register(Proveedor)
 admin.site.register(Usuario)
 admin.site.register(HistorialMovimientos)
 admin.site.register(Despacho)
+admin.site.register(Destino)
+admin.site.register(Categoria)
+admin.site.register(ConfigCarro)
+admin.site.register(EstadoCarro)
+
+
+@admin.register(Vehiculo)
+class VehiculoAdmin(admin.ModelAdmin):
+    list_display = ['id_vehiculo', 'placa', 'marca', 'capacidad_kg']
+    search_fields = ['placa', 'marca']
+    ordering = ['placa']
