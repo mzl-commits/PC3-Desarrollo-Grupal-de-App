@@ -30,9 +30,11 @@ class SessionManager(context: Context) {
             if (exception is IOException) emit(emptyPreferences()) else throw exception
         }
         .map { preferences ->
+            val username = preferences[Keys.USERNAME].orEmpty()
             UserSession(
-                isLoggedIn = preferences[Keys.IS_LOGGED_IN] ?: false,
-                username = preferences[Keys.USERNAME].orEmpty(),
+                // Una bandera huérfana nunca debe permitir acceso a rutas protegidas.
+                isLoggedIn = preferences[Keys.IS_LOGGED_IN] == true && username.isNotBlank(),
+                username = username,
             )
         }
 
