@@ -13,6 +13,14 @@ sealed interface AuthResult {
     data class Error(val message: String) : AuthResult
 }
 
+internal object DemoCredentials {
+    const val USERNAME = "wash"
+    const val PASSWORD = "123456"
+
+    fun areValid(username: String, password: String): Boolean =
+        username == USERNAME && password == PASSWORD
+}
+
 /** Contract that a future JWT Retrofit data source must implement. */
 fun interface AuthRemoteDataSource {
     suspend fun login(username: String, password: String): AuthenticatedUser
@@ -32,7 +40,7 @@ class AuthRepository(
         } ?: run {
             // Credenciales temporales mientras se define el contrato JWT del backend.
             delay(DEMO_LOGIN_DELAY_MS)
-            if (username == DEMO_USERNAME && password == DEMO_PASSWORD) {
+            if (DemoCredentials.areValid(username, password)) {
                 AuthResult.Success(AuthenticatedUser(username = username))
             } else {
                 AuthResult.Error("Usuario o contraseña incorrectos")
@@ -49,8 +57,6 @@ class AuthRepository(
     suspend fun logout() = sessionManager.clearSession()
 
     private companion object {
-        const val DEMO_USERNAME = "wash"
-        const val DEMO_PASSWORD = "123456"
         const val DEMO_LOGIN_DELAY_MS = 700L
     }
 }
